@@ -1,7 +1,7 @@
 const estadoFinal = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 let hash = {};
 let openList = [];
-let estado = false;
+let auxState = false;
 let pasos = 0;
 
 function compare(state) {
@@ -106,12 +106,12 @@ function solve(state) {
   state.levels = 0;
   state.prev = null;
   openList.push(state);
-  while (estado !== true) {
+  while (auxState !== true) {
     let currentState = openList.shift();
     let successors = getSuccessors(currentState);
     for (let i = 0; i < successors.length; i++) {
       if (compare(estadoFinal, successors[i])) {
-        estado = true;
+        auxState = true;
         collateSteps(successors[i]);
         break;
       } else {
